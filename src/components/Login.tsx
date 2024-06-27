@@ -26,6 +26,19 @@ const Login = function () {
     AccountType.OWNER
   );
 
+  // state for error message
+  const [errorMessage, setErrorMessage] = useState<string>("");
+
+  // state isLoading: true incase we are waiting for response, false: incase we aren't waiting for response.
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  // variables
+  let errorAlert = (
+    <div className="alert alert-danger" role="alert">
+      {errorMessage}
+    </div>
+  );
+
   /*
     Event Handlers  
   */
@@ -63,13 +76,35 @@ const Login = function () {
           "Basic " + btoa(credentials.username + ":" + credentials.password),
       },
     };
-    const response = await fetch(url, options);
-    console.log(await response.text());
-  }
 
+    try {
+      // update is loading state to disable the login button
+      setIsLoading(true);
+      const response = await fetch(url, options);
+      setIsLoading(false);
+
+      if (response.status === 401) {
+        throw Error("Invalid credentials");
+      }
+
+      setErrorMessage("");
+      console.log(await response.text());
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
+    errorAlert = errorMessage ? (
+      <div className="alert alert-secondary" role="alert">
+        {errorMessage}
+      </div>
+    ) : (
+      <></>
+    );
+  }
+  //{errorMessage !== "" ? errorAlert : <></>}
   return (
     <>
       <form onSubmit={onSubmitHandler}>
+        {errorMessage && errorAlert}
         <div className="form-group">
           <label>Email address / phone number</label>
           <input
@@ -125,8 +160,8 @@ const Login = function () {
           </div>
         </div>
 
-        <button type="submit" className="btn btn-primary">
-          login
+        <button disabled={isLoading} type="submit" className="btn btn-primary">
+          {isLoading ? "loading" : "login"}
         </button>
       </form>
     </>
