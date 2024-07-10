@@ -81,7 +81,6 @@ const Login = function () {
       // update is loading state to disable the login button
       setIsLoading(true);
       const response = await fetch(url, options);
-      setIsLoading(false);
 
       if (response.status === 401) {
         throw Error("Invalid credentials");
@@ -91,6 +90,8 @@ const Login = function () {
       console.log(await response.text());
     } catch (error) {
       setErrorMessage(error.message);
+    } finally {
+      setIsLoading(false);
     }
     errorAlert = errorMessage ? (
       <div className="alert alert-secondary" role="alert">
@@ -102,69 +103,79 @@ const Login = function () {
   }
   //{errorMessage !== "" ? errorAlert : <></>}
   return (
-    <>
-      <form onSubmit={onSubmitHandler}>
-        {errorMessage && errorAlert}
-        <div className="form-group">
-          <label>Email address / phone number</label>
-          <input
-            name="username"
-            className="form-control"
-            id="username"
-            placeholder="Enter email / phone number"
-            onChange={credentialsChangeHandler}
-          />
-        </div>
-        <div className="form-group">
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            className="form-control"
-            id="password"
-            placeholder="Password"
-            onChange={credentialsChangeHandler}
-          />
-        </div>
-        <div>
-          <p> Account Type </p>
-          <div className="form-check">
+    <div className="container mt-5">
+      <div className="text-center">
+        <h1>Login</h1>
+      </div>
+      <div className="row justify-content-center my-2">
+        <form className="col-xl-6" onSubmit={onSubmitHandler}>
+          {errorMessage && errorAlert}
+          <div className="form-group">
+            <label>Email address / phone number</label>
             <input
-              className="form-check-input"
-              type="radio"
-              name="flexRadioDefault"
-              value={AccountType.OWNER}
-              onChange={accountTypeChangeHandler}
+              name="username"
+              className="form-control"
+              id="username"
+              placeholder="Enter email / phone number"
+              onChange={credentialsChangeHandler}
             />
-            <label className="form-check-label">Owner</label>
           </div>
-          <div className="form-check">
+          <div className="form-group">
+            <label>Password</label>
             <input
-              className="form-check-input"
-              type="radio"
-              name="flexRadioDefault"
-              value={AccountType.COACH}
-              onChange={accountTypeChangeHandler}
+              type="password"
+              name="password"
+              className="form-control"
+              id="password"
+              placeholder="Password"
+              onChange={credentialsChangeHandler}
             />
-            <label className="form-check-label">Coach </label>
           </div>
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="flexRadioDefault"
-              value={AccountType.CLIENT}
-              onChange={accountTypeChangeHandler}
-            />
-            <label className="form-check-label">Client </label>
+          <div>
+            <label> Account Type </label>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                value={AccountType.OWNER}
+                onChange={accountTypeChangeHandler}
+              />
+              <label className="form-check-label">Owner</label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                value={AccountType.COACH}
+                onChange={accountTypeChangeHandler}
+              />
+              <label className="form-check-label">Coach </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                value={AccountType.CLIENT}
+                onChange={accountTypeChangeHandler}
+              />
+              <label className="form-check-label">Client </label>
+            </div>
           </div>
-        </div>
-
-        <button disabled={isLoading} type="submit" className="btn btn-primary">
-          {isLoading ? "loading" : "login"}
-        </button>
-      </form>
-    </>
+          <div className="row col-3 align-self-end">
+            <button
+              disabled={isLoading}
+              type="submit"
+              className="btn btn-secondary"
+            >
+              {isLoading ? "loading" : "Login"}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 
