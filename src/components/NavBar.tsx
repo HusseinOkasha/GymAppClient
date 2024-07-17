@@ -40,7 +40,11 @@ function NavBar() {
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item" to="owner-account-manager">
+                  <Link
+                    className="dropdown-item"
+                    to="/owner-account-manager"
+                    replace
+                  >
                     Owner Accounts
                   </Link>
                 </li>

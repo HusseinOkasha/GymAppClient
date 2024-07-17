@@ -180,7 +180,7 @@ function CreateNewAccountComponent() {
         }
       : { ...newAccountAttributes };
     const accessToken =
-      "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiNSIsImV4cCI6MTcxOTgzNzg3NiwiaWF0IjoxNzE5ODM0Mjc2LCJzY29wZSI6IkNPQUNIIn0.KQlFlWiQqGH5HKGdUUkY0mAud1edswMxlqZPBjf6GMPO6CPsZlrW-dVPp8aXftS-xPmCHA6rW-WViAR1Dcpp2cfeVcXIeVXBSQJqe2AlV9TDf7LyDzQWTYtz5V10yPRj3Ub8mzlC4zsyxLg6_Qyh-VJmxRLkXcQj2xkEpC-W_h4wcNFslW6_EvXJDPVeipaQbKmsll2AmHiZb4wDEoxKpPzlpE4Ue9d28GwfpmiejM-byEA7vgz_xdAtWQbf2eD-NpQ29EwXKR9TDN9bIXrwawcYHumwb6TbuLELNqJE5eCebt1QQIcP-7Ny8YzDu_xcXHm8Xw6u4fhf4aEpgYUxaQ";
+      "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiMiIsImV4cCI6MTcyMTIxNzIyMywiaWF0IjoxNzIxMjEzNjIzLCJzY29wZSI6Ik9XTkVSIn0.XcItRwAUqP620zuxrMFJ3Dy5BbVFLXqVi0MC1dE5EyyAzGugjmZq9Zo4dMDzYjEAreonkwOePerRHbSFWYcaQHXlSoirBy2tWeWafk0R3oLcebzvUnS5a1BPDTcwdt4NmXxLA9qsm3Tas_lxGap8m-NFT22ZbzL-ML8K3M5d3HRMXWVOfXbfj5lvc7xJPprMxHqiKQAqyUrNISAaS9lanx89CfV6GYykqZ7ZA7PLB6dyofHOm8qDhrXJgnnx5fuFQVOmKGGxkh7dt-AHJJVkuuhP3zGhkKbRW_bE0sJipVHAEG_zA9Wdqb23f6DoESqWREOh4BjUHKQIaQzxv93J8A";
     const options = {
       method: "POST",
       headers: {

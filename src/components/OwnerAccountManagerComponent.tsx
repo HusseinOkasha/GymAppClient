@@ -15,9 +15,11 @@ function OwnerAccountManagerComponent() {
   function onSubmitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (action == ActionType.CREATE_OWNER_ACCOUNT) {
-      navigate("/owner-account-manager/create-owner-account");
+      navigate("/owner-account-manager/create-owner-account", {
+        replace: true,
+      });
     } else {
-      navigate("/owner-account-manager/get-all-owners");
+      navigate("/owner-account-manager/owners", { replace: true });
     }
   }
 
